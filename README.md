@@ -7,6 +7,11 @@ denitrification (BED) biofilms, used in:
 > decoupling reveals functional partitioning in bioelectrochemical denitrification biofilms.
 > *Environmental Research*, 308, 125626. https://doi.org/10.1016/j.envres.2026.125626
 
+<img width="715" height="394" alt="image" src="https://github.com/user-attachments/assets/cace3518-5476-41b6-858d-1abc37a19fac" />
+
+
+
+
 **If you use this pipeline or any part of it, please cite the paper above** (see [Citation](#citation)).
 
 Working-electrode biofilms were sequenced (Illumina shotgun metagenomes and
@@ -29,54 +34,6 @@ Raw reads: NCBI BioProject **[PRJNA1398933](https://www.ncbi.nlm.nih.gov/bioproj
 
 Operating conditions 1-4 are described in the paper's table of experimental conditions.
 Sample names are hard-coded in several scripts; change them for your own data.
-
-## Pipeline overview
-
-```mermaid
-flowchart TD
-    subgraph MG["1. Metagenome (DNA)"]
-        A1[Raw reads] --> A2["QC<br/>fastp"]
-        A2 --> A3["Co-assembly of all samples<br/>MEGAHIT"]
-        A3 --> A4["Read mapping<br/>Bowtie2 + SAMtools"]
-        A4 --> A5["Coverage<br/>CoverM contig / genome"]
-        A5 --> A6["Binning<br/>VAMB · CONCOCT · MaxBin2 · SemiBin2"]
-        A6 --> A7["Bin integration<br/>DAS Tool"]
-        A7 --> A8["Dereplication<br/>dRep: ≥50% compl., ≤10% contam., 95% ANI"]
-        A8 --> A9["Taxonomy<br/>GTDB-Tk + FastTree / iTOL"]
-        A3 --> A10["KO annotation of contigs<br/>EnrichM (DIAMOND)"]
-        A10 --> A11["KO / MAG TPM tables"]
-        A5 --> A11
-        A8 --> A11
-    end
-
-    subgraph MT["2. Metatranscriptome (RNA)"]
-        B1[Raw reads] --> B2["QC<br/>fastp"]
-        B2 --> B3["rRNA removal<br/>SortMeRNA (SILVA 138.1)"]
-        B3 --> B4["Pseudo-alignment to contigs<br/>Salmon"]
-        B4 --> B5["Contig TPM → CDS → KO / MAG TPM"]
-    end
-
-    subgraph EET["3. EET genes"]
-        C1["ORFs on all contigs<br/>Prodigal -p meta"] --> C2["Pfam EET subset<br/>hmmscan --cut_ga"]
-        C1 --> C3["Multiheme cytochromes<br/>≥3 CXXCH motifs"]
-        C1 --> C4["Geobacter EET homologs<br/>DIAMOND blastp"]
-        C2 & C3 & C4 --> C5["EET gene sets<br/>broad / high-confidence"]
-        C5 --> C6["Gene abundance & transcription<br/>Salmon on CDS (DNA + RNA)"]
-        C6 --> C7["Community EET and per-MAG contribution"]
-    end
-
-    A3 --> B4
-    A3 --> C1
-    A8 --> C7
-    B3 --> C6
-    A2 --> C6
-    A10 --> B5
-    A11 --> D1["Transcription normalized by DNA copy<br/>(GTDB single-copy markers)"]
-    B5 --> D1
-    D1 --> D2["Function-group and pathway activity per MAG"]
-    D2 --> E1["4. Correlation with reactor performance<br/>Pearson + heatmap"]
-    C7 --> E1
-```
 
 ## Repository layout
 
@@ -165,3 +122,4 @@ reveals functional partitioning in bioelectrochemical denitrification biofilms.
 ```
 
 Please also cite the individual tools listed under [Software](#software).
+
