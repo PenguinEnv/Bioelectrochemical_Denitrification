@@ -1,0 +1,46 @@
+# Only scripts and documentation are tracked.
+
+# Input data for the correlation analysis (keep local)
+4_correlation/data.csv
+
+# Sequencing reads
+*.fq
+*.fq.gz
+*.fastq
+*.fastq.gz
+
+# Sequences, assemblies, bins/MAGs, genes, proteins
+*.fa
+*.fa.gz
+*.fna
+*.faa
+*.fasta
+*.fasta.gz
+
+# Alignments, indexes, databases
+*.bam
+*.bai
+*.sam
+*.bt2
+*.bt2l
+*.dmnd
+*.hmm
+*.h3f
+*.h3i
+*.h3m
+*.h3p
+*.msh
+
+# Results and reports
+*.tsv
+*.csv
+!4_correlation/data_template.csv
+*.txt
+*.gff
+*.nwk
+*.html
+*.json
+*.zip
+*.log
+*.png
+*.pdf
