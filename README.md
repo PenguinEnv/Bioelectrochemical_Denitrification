@@ -109,6 +109,7 @@ Kwon, H., Wang, Q., Riveros, A., Li, Y., & Jiang, D. (2026). Abundance–transcr
 reveals functional partitioning in bioelectrochemical denitrification biofilms.
 *Environmental Research*, 308, 125626. https://doi.org/10.1016/j.envres.2026.125626
 
+<img width="306" height="306" alt="Group logo" src="https://github.com/user-attachments/assets/5c693cb1-66b4-4928-8952-e80435322970" />
 
 Please also cite the individual tools listed under [Software](#software).
 
